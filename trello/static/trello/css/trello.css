@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5 Jun, 2016, 3:46:44 PM
+    Author     : siraj
+*/
+
+@media (min-width:768px) {
+                .container{
+                    width:100%;
+                }
+                .container{
+                    min-height: 100%;
+                    height: auto;
+                }
+                .container > .row {
+                    overflow-x:scroll;
+                    overflow-y:hidden;
+                    white-space:nowrap;
+                }
+                .container > .row [class*="col-lg"], .container > .row [class*="col-md"], .container > .row [class*="col-sm"] {
+                    float:none;
+                    display:inline-block;
+                    white-space:normal;
+                    vertical-align:top;
+                }
+            }
