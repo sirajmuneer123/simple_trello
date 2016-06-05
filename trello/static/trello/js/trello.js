@@ -64,7 +64,8 @@ $(document).ready(function () {
             success: function (data) {
                 var pdata = JSON.parse(data);
                 var row = '';
-                row += '<li data-card_id="' + pdata.id + '" class="list-group-item card">' + pdata.name + '</li>';
+                row += '<li data-card_id="' + pdata.id + '" class="list-group-item card">' + pdata.name + '';
+                row +='<i class="fa fa-pencil card_edit" aria-hidden="true" style="float:right;cursor: pointer"></i></li>';
                 element.parent().find('ul').append(row);
                 element.parent().find('.new_card,.save_card,.hide_all').hide();
                 element.parent().find('.add_card').show();
