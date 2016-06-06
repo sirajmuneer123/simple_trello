@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var list_new_id;
     $(document).on('click', '.add_card', function () {
         $(this).parent().find('.new_card').val('');
         $(this).parent().find('.new_card,.save_card,.hide_all').show();
@@ -77,11 +78,9 @@ $(document).ready(function () {
         var order_array = []
         $.each($('.list'), function (i, ele) {
             if ($(ele).data('list_id') !== undefined) {
-                console.log('oooooooooooooooo  '+$(ele).data('list_id'));
                 order_array.push($(ele).data('list_id'));
             }
         });
-        console.log('    fff  '+order_array);
         $.ajax({
             type: "POST",
             url: "/order_list/",
@@ -111,15 +110,12 @@ $(document).ready(function () {
             $.each($(ele).find('.card'), function (i, ele) {
                 if($(ele).data('card_id')!== null && $(ele).data('card_id')!== undefined){
                     order.push($(ele).data('card_id'));
-                    console.log('uhfhudsh',$(ele).data('card_id'))
                 }
             })
             order_array_dict.id = $(this).data('list_id');
             order_array_dict.order = order;
             order_array.push(order_array_dict);
-            console.log(order_array)
         });
-        console.log(order_array);
         $.ajax({
             type: "POST",
             url: "/order_card/",
@@ -160,16 +156,18 @@ $(document).ready(function () {
         });
     });
     $(".card_box").sortable({
-        revert: true
+        revert: true,
+        update:function(){
+          order_card(list_new_id)
+        }
     });
     $(".card").draggable({
         connectToSortable: ".card_box",
-//      helper: "clone",
         revert: "invalid",
         stop: function () {
-            console.log($(this).data('card_id'), $(this).parent().parent().data('list_id'));
             var list_id = $(this).parent().parent().data('list_id');
             var card_id = $(this).data('card_id');
+            list_new_id = list_id
             $.ajax({
                 type: "POST",
                 url: "/drag_card/",
@@ -179,8 +177,6 @@ $(document).ready(function () {
                     'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
                 },
                 success: function (data) {
-                    setTimeout(order_card(list_id),2000);
-                    //order_card(list_id);
                     if (data != 'success') {
                         alert('failed')
                     }
@@ -192,6 +188,9 @@ $(document).ready(function () {
     $("ul, li").disableSelection();
     $(".lists").sortable({
         revert: true,
+        update:function(){
+            order_list()
+        }
     });
     $(".list").draggable({
         connectToSortable: ".lists",
