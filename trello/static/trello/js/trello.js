@@ -77,10 +77,11 @@ $(document).ready(function () {
         var order_array = []
         $.each($('.list'), function (i, ele) {
             if ($(ele).data('list_id') !== undefined) {
+                console.log('oooooooooooooooo  '+$(ele).data('list_id'));
                 order_array.push($(ele).data('list_id'));
             }
         });
-        console.log(order_array);
+        console.log('    fff  '+order_array);
         $.ajax({
             type: "POST",
             url: "/order_list/",

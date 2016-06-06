@@ -19,6 +19,9 @@ def home(request):
 
 
 def add_list(request):
+    '''
+    function for add list
+    '''
     try:
 	list_name = request.POST['list_name']
 	list_ins = List()
@@ -30,6 +33,9 @@ def add_list(request):
 
 
 def add_card(request):
+    '''
+    function for add card
+    '''
     card_name = request.POST['card_name']
     list_id = request.POST['list_id']
     try:
@@ -44,6 +50,9 @@ def add_card(request):
 
 
 def update_card(request):
+    '''
+    function for update individual card
+    '''
     card_name = request.POST['card_name']
     card_id = request.POST['card_id']
     try:
@@ -54,9 +63,11 @@ def update_card(request):
 
 
 def update_list_positions(request):
-    print 'order'
+    '''
+    function for update all list positions 
+    '''
     array = request.POST.getlist ('order_array[]')
-    #array.reverse()
+    array.reverse()
     print 'aaaaaaara',array
     with transaction.atomic():
         for i,list_id in enumerate(array):
@@ -71,7 +82,9 @@ def update_list_positions(request):
 
 
 def update_card_positions(request):
-    print 'order'
+    '''
+    function for update all card positions
+    '''
     array = json.loads(request.POST['order_array'])
 #    array.reverse()
     print 'aaaaaaara', array
@@ -95,6 +108,9 @@ def update_card_positions(request):
 
 
 def drag_card(request):
+    '''
+    function for update card after drag
+    '''
     list_id = request.POST['list_id']
     card_id = request.POST['card_id']
     print list_id, card_id
