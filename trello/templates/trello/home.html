@@ -5,9 +5,6 @@
 <html>
 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Trello</title>
         <link href="{% static 'trello/css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'trello/css/font-awesome.min.css' %}" rel="stylesheet">
@@ -20,7 +17,7 @@
             <div class="container-fluid">
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search"></input>
+                        <input type="text" id="search_list_name" class="form-control" placeholder="Search"></input>
                     </div>
                 </form>
             </div>

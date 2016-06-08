@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^order_card/$', 'trello.views.update_card_positions', name='update_card_positions'),
     url(r'^update_card/$', 'trello.views.update_card', name='update_card'),
     url(r'^drag_card/$', 'trello.views.drag_card', name='drag_card'),
+    
 ]

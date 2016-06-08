@@ -11,10 +11,9 @@ def home(request):
     '''
     Home page view
     '''
-
     list_obj = List.objects.filter().prefetch_related(
     Prefetch('card_set', queryset=Card.objects.filter().order_by(
-        '-position'))).order_by('position')
+            '-position'))).order_by('position')
     return render(request, 'trello/home.html', {'list':list_obj})
 
 
